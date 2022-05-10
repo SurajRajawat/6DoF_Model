@@ -1,0 +1,5 @@
+function gravBodyFrame(theta, phi)
+    grav = MAV.gravity;
+    mass = MAV.mass;
+    
+    gravb = grav*mass*[-sin(theta) cos(theta)sin(phi) cos(theta)cos(phi)
