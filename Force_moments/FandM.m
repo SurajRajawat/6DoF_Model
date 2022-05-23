@@ -95,15 +95,18 @@ function out = FandM(x,delta,wind,MAV)
     Va = norm(Vr);
     alpha = atan2(Vr(3),Vr(1));
     beta  = asin(Vr(2)/Va);
+    
+    MAV.alpha = alpha;
+    MAV.beta  = beta;
 %     wn    = 0;
 %     we    = 0;
 %     wd    = 0;
 %     
     % Constants
-    C_x_alpha = -MAV.C_D_alpha*cos(alpha) + MAV.C_L_alpha*sin(alpha);
+    C_x_alpha = -(MAV.C_D_alpha*alpha + MAV.C_D_0)*cos(alpha) + (MAV.C_L_alpha*alpha + MAV.C_L_0)*sin(alpha);
     C_x_q     = -MAV.C_D_q*cos(alpha) + MAV.C_L_q*sin(alpha);
     C_x_delta = -MAV.C_D_delta_e*cos(alpha) + MAV.C_L_delta_e*sin(alpha);
-    C_z_alpha = -MAV.C_D_alpha*sin(alpha) - MAV.C_L_alpha*cos(alpha);
+    C_z_alpha = -(MAV.C_D_alpha*alpha + MAV.C_D_0)*sin(alpha) - (MAV.C_L_alpha*alpha + MAV.C_L_0)*cos(alpha);
     C_z_q     = -MAV.C_D_q*sin(alpha) - MAV.C_L_q*cos(alpha);
     C_z_delta = -MAV.C_D_delta_e*sin(alpha) - MAV.C_L_delta_e*cos(alpha);
     % Forces and Moments

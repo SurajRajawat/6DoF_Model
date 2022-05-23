@@ -1,3 +1,6 @@
+
+clear
+clc
 % MAV.gravity = 9.81;
    
 %MAVhysical MAVarameters of airframe
